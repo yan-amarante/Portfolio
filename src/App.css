@@ -1,4 +1,4 @@
-.container{
+.container {
   width: 100vw;
   height: 100vh;
   background-color: #23252A;
@@ -6,14 +6,57 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: -2;
 }
-.container-home{
+
+.container-home {
   width: 100%;
   height: 90%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+
+  .artigo-home {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .titulo-home {
+      color: #FFF;
+      font-family: PT Sans;
+      font-size: 3rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: -0.96px;
+    }
+
+    .descricao-home {
+      color: var(--neutral-neutral-200, #ABB0BA);
+      font-family: Raleway;
+      font-size: 2.25rem;
+      font-style: normal;
+      font-weight: 300;
+      line-height: normal;
+    }
+  }
 }
-.container-header{
+
+.container-header {
   width: 100%;
   height: 10%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1rem;
+
+  .titulo-header {
+    color: #FFF;
+    font-family: Raleway;
+    font-size: 2.25rem;
+    font-weight: 400;
+  }
 }
 
 
@@ -25,8 +68,10 @@
   width: 100%;
   height: 100%;
   background-image: url("./assets/background.png");
+  z-index: -1;
 }
-.container:after{
+
+.container:after {
   content: ' ';
   position: absolute;
   left: 0;
@@ -34,4 +79,5 @@
   width: 100%;
   height: 100%;
   background: linear-gradient(90deg, rgba(35, 37, 42, 0.00) 0%, #23252A 20.33%, #23252A 80.83%, rgba(35, 37, 42, 0.00) 100%);
+  z-index: -1;
 }
