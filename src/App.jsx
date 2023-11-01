@@ -4,11 +4,25 @@ import { PageContext } from "./Context/pageContext.jsx"
 
 function App() {
 
-  //const { page, setPage } = useContext(PageContext)
+  const { page, setPage } = useContext(PageContext)
 
   return (
     <section className='container'>
-      <LandingPage />
+      {(page.landing.isActive ?
+        <LandingPage />
+        :
+        null
+      )}
+      {(page.skills.isActive ?
+        <SkillsPage />
+        :
+        null
+      )}
+      {(page.projects.isActive ?
+        <ProjectsPage />
+        :
+        null
+      )}
       <Header />
     </section>
   )
@@ -22,6 +36,11 @@ function LandingPage() {
           <LandingPageIcon nameClass="icon-window_header" width="11%" height="auto" color="black" />
           <h5 className='name-window'>Apresentacão.exe</h5>
         </section>
+        <section className='window-controls'>
+          <MinimizeIcon currentPage="landing" />
+          <FullscreenIcon currentPage="landing" />
+          <CloseIcon currentPage="landing" />
+        </section>
       </header>
       <section className='window-display'>
         <article className='presentation-text'>
@@ -34,24 +53,143 @@ function LandingPage() {
     </main>
   )
 }
+function SkillsPage() {
+  return (
+    <main className='container-landing_page'>
+      <header className='window-header'>
+        <section className='window_header-infos'>
+          <LandingPageIcon nameClass="icon-window_header" width="11%" height="auto" color="black" />
+          <h5 className='name-window'>Apresentacão.exe</h5>
+        </section>
+        <section className='window-controls'>
+          <MinimizeIcon currentPage="skills" />
+          <FullscreenIcon currentPage="skills" />
+          <CloseIcon currentPage="skills" />
+        </section>
+      </header>
+      <section className='window-display'>
+        SKILLS
+      </section>
+    </main>
+  )
+}
+function ProjectsPage() {
+  return (
+    <main className='container-landing_page'>
+      <header className='window-header'>
+        <section className='window_header-infos'>
+          <LandingPageIcon nameClass="icon-window_header" width="11%" height="auto" color="black" />
+          <h5 className='name-window'>Apresentacão.exe</h5>
+        </section>
+        <section className='window-controls'>
+          <MinimizeIcon currentPage="projects" />
+          <FullscreenIcon currentPage="projects" />
+          <CloseIcon currentPage="projects" />
+        </section>
+      </header>
+      <section className='window-display'>
+        PROJECTS
+      </section>
+    </main>
+  )
+}
+
+function MinimizeIcon({ currentPage }) {
+
+  const { page, setPage } = useContext(PageContext)
+
+  function minimizePage() {
+    setPage({ ...page, [currentPage]: { isActive: false, isFullscreen: page.landing.isFullscreen, isClosed: false } })
+  }
+  return (
+    <section className='window_controls-icon' onClick={() => minimizePage()}>
+      <svg width="15" height="3" viewBox="0 0 15 3" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="15" height="3" rx="1.5" fill="black" />
+      </svg>
+    </section>
+  )
+}
+function FullscreenIcon({ currentPage }) {
+
+  const { page, setPage } = useContext(PageContext)
+
+  function changeResolutionPage() {
+    setPage({ ...page, [currentPage]: { isActive: true, isFullscreen: true, isClosed: false } })
+  }
+
+  return (
+    <section className='window_controls-icon' onClick={() => changeResolutionPage()}>
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="1" y="1" width="13" height="13" rx="2" stroke="black" stroke-width="2" />
+      </svg>
+    </section>
+  )
+}
+function CloseIcon({ currentPage }) {
+
+  const { page, setPage } = useContext(PageContext)
+
+  function closePage() {
+    setPage({ ...page, [currentPage]: { isActive: false, isFullscreen: page.landing.isFullscreen, isClosed: true } })
+  }
+
+  return (
+    <section className='window_controls-icon' onClick={() => closePage()}>
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="2.14957" height="18.9987" rx="1.07478" transform="matrix(0.709272 -0.704935 0.709272 0.704935 0 1.60715)" fill="black" />
+        <rect width="2.14957" height="18.9987" rx="1.07478" transform="matrix(0.709272 0.704935 -0.709272 0.704935 13.4752 0)" fill="black" />
+      </svg>
+    </section>
+  )
+}
 
 
 function Header() {
+
+  const { page, setPage } = useContext(PageContext)
+
+  function changeWindow(currentPage, currentObject) {
+
+    if (!currentObject.isActive) {
+      setPage({ ...page, [currentPage]: { isActive: true, isFullscreen: currentObject.isFullscreen, isClosed: false } })
+    } else if (currentObject.isActive) {
+      setPage({ ...page, [currentPage]: { isActive: false, isFullscreen: currentObject.isFullscreen, isClosed: false } })
+    }
+  }
+
+  function verifyOutlineState(currentPage) {
+    if (currentPage.isActive) {
+      return "outline-active"
+    } else if (!currentPage.isClosed && !currentPage.isActive) {
+      return "outline-not_closed"
+    } else if (currentPage.isClosed) {
+      return "outline-closed"
+    }
+  }
+
+  function verifyIconState(currentPage) {
+    if (currentPage.isActive) {
+      return "icon-header icon-header-active"
+    } else if (currentPage.isClosed || !currentPage.isActive) {
+      return "icon-header icon-header-not_active"
+    }
+  }
+
   return (
     <header className='container-header'>
       <h2 className='title-header'>Yan Amarante</h2>
       <nav className='navigation-container'>
-        <section onClick={() => console.log("landing")} className='icon-header'>
+        <section onClick={() => changeWindow("landing", page.landing)} className={verifyIconState(page.landing)}>
           <LandingPageIcon width="50%" height="auto" color="white" />
-          <div className='outiline-icon'></div>
+          <div className={verifyOutlineState(page.landing)}></div>
         </section>
-        <section onClick={() => console.log("skills")} className='icon-header'>
+        <section onClick={() => changeWindow("skills", page.skills)} className={verifyIconState(page.skills)}>
           <SkillsIcon width="50%" height="auto" color="white" />
-          <div className='outiline-icon'></div>
+          <div className={verifyOutlineState(page.skills)}></div>
         </section>
-        <section onClick={() => console.log("projects")} className='icon-header'>
+        <section onClick={() => changeWindow("projects", page.projects)} className={verifyIconState(page.projects)}>
           <ProjectsIcon width="50%" height="auto" color="white" />
-          <div className='outiline-icon'></div>
+          <div className={verifyOutlineState(page.projects)}></div>
         </section>
       </nav>
     </header>
