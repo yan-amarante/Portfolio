@@ -1,5 +1,5 @@
 import './App.css'
-import { useContext } from 'react'
+import { useContext, useRef, useEffect, useState } from 'react'
 import { PageContext } from "./Context/pageContext.jsx"
 
 function App() {
@@ -29,9 +29,56 @@ function App() {
 }
 
 function LandingPage() {
+
+  // const quickAndDirtyStyle = {
+  //   width: "200px",
+  //   height: "200px",
+  //   background: "#FF9900",
+  //   color: "#FFFFFF",
+  //   display: "flex",
+  //   justifyContent: "center",
+  //   alignItems: "center"
+  // }
+  const [pressed, setPressed] = useState(false)
+  const [position, setPosition] = useState({ x: 0, y: 0 })
+  const headerRef = useRef(null)
+
+  // Monitor changes to position state and update DOM
+  useEffect(() => {
+    if (headerRef.current) {
+      headerRef.current.style.transform = `translate(${position.x}px, ${position.y}px)`
+    }
+  }, [position])
+
+  // Update the current position if mouse is down
+  const onMouseMove = (event) => {
+    if (pressed) {
+      setPosition({
+        x: position.x + event.movementX,
+        y: position.y + event.movementY
+      })
+    }
+  }
+
+  //   return (
+  //     <div
+  //       ref={ref}
+  //       style={quickAndDirtyStyle}
+  //       onMouseMove={onMouseMove}
+  //       onMouseDown={() => setPressed(true)}
+  //       onMouseUp={() => setPressed(false)}>
+  //       <p>{pressed ? "Dragging..." : "Press to drag"}</p>
+  //     </div>
+  //   )
+
+
   return (
-    <main className='container-landing_page'>
-      <header className='window-header'>
+    <main ref={headerRef} className='container-landing_page'>
+      <header
+        onMouseMove={onMouseMove}
+        onMouseDown={() => setPressed(true)}
+        onMouseUp={() => setPressed(false)}
+        className='window-header'>
         <section className='window_header-infos'>
           <LandingPageIcon nameClass="icon-window_header" width="11%" height="auto" color="black" />
           <h5 className='name-window'>Apresentacão.exe</h5>
@@ -53,6 +100,7 @@ function LandingPage() {
     </main>
   )
 }
+
 function SkillsPage() {
   return (
     <main className='container-landing_page'>
