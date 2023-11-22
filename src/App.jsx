@@ -30,29 +30,25 @@ function App() {
 
 function LandingPage() {
 
-  // const quickAndDirtyStyle = {
-  //   width: "200px",
-  //   height: "200px",
-  //   background: "#FF9900",
-  //   color: "#FFFFFF",
-  //   display: "flex",
-  //   justifyContent: "center",
-  //   alignItems: "center"
-  // }
-  const [pressed, setPressed] = useState(false)
+  const [headerPressed, setHeaderPressed] = useState(false)
+  const [windowPressed, setWindowPressed] = useState(false)
   const [position, setPosition] = useState({ x: 0, y: 0 })
+  const [size, setSize] = useState({ width: 0, height: 0 })
   const headerRef = useRef(null)
 
-  // Monitor changes to position state and update DOM
   useEffect(() => {
     if (headerRef.current) {
       headerRef.current.style.transform = `translate(${position.x}px, ${position.y}px)`
     }
   }, [position])
 
-  // Update the current position if mouse is down
+  useEffect(() => {
+    setSize({ width: headerRef.current.clientWidth, height: headerRef.current.clientHeight })
+  }, [])
+
   const onMouseMove = (event) => {
-    if (pressed) {
+
+    if (headerPressed) {
       setPosition({
         x: position.x + event.movementX,
         y: position.y + event.movementY
@@ -60,24 +56,91 @@ function LandingPage() {
     }
   }
 
-  //   return (
-  //     <div
-  //       ref={ref}
-  //       style={quickAndDirtyStyle}
-  //       onMouseMove={onMouseMove}
-  //       onMouseDown={() => setPressed(true)}
-  //       onMouseUp={() => setPressed(false)}>
-  //       <p>{pressed ? "Dragging..." : "Press to drag"}</p>
-  //     </div>
-  //   )
+  function verifyMousePosition(event) {
 
+
+    const mousePosition = {
+
+      x: event.clientX,
+
+      y: event.clientY
+
+    }
+
+    const windowPosition = {
+
+      top: headerRef.current.getBoundingClientRect().top,
+
+      left: headerRef.current.getBoundingClientRect().left,
+
+      right: headerRef.current.getBoundingClientRect().right,
+
+      bottom: headerRef.current.getBoundingClientRect().bottom
+
+    }
+
+    const hitboxValue = 10
+
+
+
+
+    if (mousePosition.x < windowPosition.left + hitboxValue && mousePosition.y > windowPosition.bottom - hitboxValue) {
+
+
+      headerRef.current.style.cursor = "sw-resize	"
+
+      verifyWindowWidth(event.movementX, event.movementY)
+
+
+    } else {
+
+      setWindowPressed(false)
+
+      headerRef.current.style.cursor = "default	"
+
+
+    }
+
+
+  }
+
+  function verifyWindowWidth(movementX, movementY) {
+
+
+
+    if (windowPressed && movementX >= 1 && movementY <= 0) {
+
+
+      headerRef.current.style.width = `${headerRef.current.getBoundingClientRect().width - 1}px`
+
+      headerRef.current.style.height = `${headerRef.current.getBoundingClientRect().height - 1}px`
+
+
+    }else if(windowPressed && movementX <= 0 && movementY >= 0){
+
+
+      headerRef.current.style.width = `${headerRef.current.getBoundingClientRect().width + 1}px`
+
+      headerRef.current.style.height = `${headerRef.current.getBoundingClientRect().height + 1}px`
+
+
+    }
+
+
+  }
 
   return (
-    <main ref={headerRef} className='container-landing_page'>
+    <main
+      onMouseMove={verifyMousePosition}
+      onMouseDown={() => setWindowPressed(true)}
+      onMouseUp={() => setWindowPressed(false)}
+      ref={headerRef}
+      className='container-landing_page'>
       <header
+        onClick={() => console.log(size)}
         onMouseMove={onMouseMove}
-        onMouseDown={() => setPressed(true)}
-        onMouseUp={() => setPressed(false)}
+        onMouseDown={() => setHeaderPressed(true)}
+        onMouseUp={() => setHeaderPressed(false)}
         className='window-header'>
         <section className='window_header-infos'>
           <LandingPageIcon nameClass="icon-window_header" width="11%" height="auto" color="black" />
