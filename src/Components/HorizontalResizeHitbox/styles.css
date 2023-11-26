@@ -1,0 +1,23 @@
+.horizontal-hitbox-size {
+    background-color: blue;
+    width: 10px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    z-index: 1;
+}
+
+.left{
+    left: 0;
+}
+.right{
+    right: 0;
+}
+
+.left,
+.right:hover {
+    cursor: e-resize;
+}
+

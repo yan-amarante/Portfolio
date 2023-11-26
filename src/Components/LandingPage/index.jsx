@@ -1,3 +1,5 @@
+import "./styles.css"
+
 import { useState, useEffect, useRef } from "react"
 
 import LandingPageIcon from "../LandingPageIcon/index"
@@ -8,7 +10,11 @@ import FullscreenIcon from "../FullscreenIcon/index"
 
 import CloseIcon from "../CloseIcon/index"
 
+import DiagonalResizeHitbox from "../DiagonalResizeHitbox/index"
 
+import HorizontalResizeHitbox from "../HorizontalResizeHitbox/index"
+
+import VerticalResizeHitbox from "../VerticalResizeHitbox/index"
 
 
 function LandingPage() {
@@ -16,61 +22,32 @@ function LandingPage() {
 
   const [headerPressed, setHeaderPressed] = useState(false)
 
-  const [windowPressed, setWindowPressed] = useState(false)
-
   const [position, setPosition] = useState({ x: 0, y: 0 })
-
-  const [size, setSize] = useState({ width: 0, height: 0 })
-
-
 
 
   const headerRef = useRef(null)
 
 
-
-
   useEffect(() => {
-
 
     moveWindow()
 
-
   }, [position])
-
-  useEffect(() => {
-
-
-    setSize({ width: headerRef.current.clientWidth, height: headerRef.current.clientHeight })
-
-
-  }, [])
-
-
 
 
   function moveWindow() {
 
-
     if (headerRef.current) {
-
 
       headerRef.current.style.transform = `translate(${position.x}px, ${position.y}px)`
 
-
     }
-
 
   }
 
-
-
-
   function onMouseMove(event) {
 
-
     if (headerPressed) {
-
 
       setPosition({
 
@@ -79,103 +56,23 @@ function LandingPage() {
 
       })
 
-
     }
-
 
   }
-
-
-
-
-  function verifyMousePosition(event) {
-
-
-    const mousePosition = {
-
-      x: event.clientX,
-
-      y: event.clientY
-
-    }
-
-    const windowPosition = {
-
-      top: headerRef.current.getBoundingClientRect().top,
-
-      left: headerRef.current.getBoundingClientRect().left,
-
-      right: headerRef.current.getBoundingClientRect().right,
-
-      bottom: headerRef.current.getBoundingClientRect().bottom
-
-    }
-
-    const hitboxValue = 10
-
-
-
-
-    if (mousePosition.x < windowPosition.left + hitboxValue && mousePosition.y > windowPosition.bottom - hitboxValue) {
-
-
-      headerRef.current.style.cursor = "sw-resize	"
-
-      verifyWindowWidth(event.movementX, event.movementY)
-
-
-    } else {
-
-      setWindowPressed(false)
-
-      headerRef.current.style.cursor = "default	"
-
-
-    }
-
-
-  }
-
-
-
-
-  function verifyWindowWidth(movementX, movementY) {
-
-
-    if (windowPressed && movementX >= 1 && movementY <= 0) {
-
-
-      headerRef.current.style.width = `${headerRef.current.getBoundingClientRect().width - 1}px`
-
-      headerRef.current.style.height = `${headerRef.current.getBoundingClientRect().height - 1}px`
-
-
-    } else if (windowPressed && movementX <= 0 && movementY >= 0) {
-
-
-      headerRef.current.style.width = `${headerRef.current.getBoundingClientRect().width + 1}px`
-
-      headerRef.current.style.height = `${headerRef.current.getBoundingClientRect().height + 1}px`
-
-
-    }
-
-
-  }
-
-
 
 
   return (
 
-    <main
-      onMouseMove={verifyMousePosition}
-      onMouseDown={() => setWindowPressed(true)}
-      onMouseUp={() => setWindowPressed(false)}
-      ref={headerRef}
-      className='container-landing_page'>
+    <main ref={headerRef} className='container-landing_page'>
+      <DiagonalResizeHitbox positionY="top" positionX="left" headerRef={headerRef} />
+      <HorizontalResizeHitbox positionX="left" headerRef={headerRef} />
+      <HorizontalResizeHitbox positionX="right" headerRef={headerRef} />
+      <VerticalResizeHitbox positionY="top" headerRef={headerRef} />
+      <VerticalResizeHitbox positionY="bottom" headerRef={headerRef} />
+      <DiagonalResizeHitbox positionY="top" positionX="right" headerRef={headerRef} />
+      <DiagonalResizeHitbox positionY="bottom" positionX="left" headerRef={headerRef} />
+      <DiagonalResizeHitbox positionY="bottom" positionX="right" headerRef={headerRef} />
       <header
-        onClick={() => console.log(size)}
         onMouseMove={onMouseMove}
         onMouseDown={() => setHeaderPressed(true)}
         onMouseUp={() => setHeaderPressed(false)}
