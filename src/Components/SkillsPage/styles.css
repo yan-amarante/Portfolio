@@ -1,0 +1,101 @@
+.window-display-skills {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: url("../../assets/blur-circles/purple.png") repeat 200px 80%,
+        url("../../assets/blur-circles/blue.png") repeat -250px 20%,
+        url("../../assets/blur-circles/aqua.png") repeat 280px 30%,
+        url("../../assets/blur-circles/pink.png") repeat -250px 80%;
+    background-size: 100%, 100%, 100%, 100%;
+    background-color: #889ACA;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: -2;
+
+    .nav-skills-window {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+
+        .nav-list-skills-window {
+            list-style: none;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+
+            .nav-list-items {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                gap: 0.1rem;
+                width: 15%;
+
+                .nav-list-icon {
+                    width: 20%;
+                    height: auto;
+                }
+
+                .nav-list-text {
+                    font-family: Questrial;
+                    color: #ffffff;
+                }
+            }
+        }
+    }
+
+    .skills-list {
+        list-style: none;
+
+
+        .skills-list-item {
+            min-width: 90px;
+            min-height: 120px;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+
+            .skills-list-text {
+                font-family: Questrial;
+                color: #ffffff;
+            }
+        }
+
+        .skills-list-item::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 5px;
+            border: 1px solid transparent;
+            background: linear-gradient(to right, #889ACA,#ffffff , #889ACA) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+        }
+
+        .skills-list-item::after {
+            content: "";
+            background: rgba(0, 0, 0, 0.01);
+            filter: blur(20px);
+            position: absolute;
+            min-width: 90px;
+            min-height: 120px;
+            z-index: -1;
+        }
+
+
+
+    }
+}

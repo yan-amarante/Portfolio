@@ -25,7 +25,7 @@ function App() {
 
   return (
 
-    <section className='container'>
+    <main className='container'>
       {(page.landing.isActive ?
         <LandingPage />
         :
@@ -42,7 +42,7 @@ function App() {
         null
       )}
       <Header />
-    </section>
+    </main>
 
   )
 

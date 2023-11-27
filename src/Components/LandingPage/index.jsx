@@ -10,11 +10,7 @@ import FullscreenIcon from "../FullscreenIcon/index"
 
 import CloseIcon from "../CloseIcon/index"
 
-import DiagonalResizeHitbox from "../DiagonalResizeHitbox/index"
-
-import HorizontalResizeHitbox from "../HorizontalResizeHitbox/index"
-
-import VerticalResizeHitbox from "../VerticalResizeHitbox/index"
+import Resize from "../Resize/index"
 
 
 function LandingPage() {
@@ -26,6 +22,8 @@ function LandingPage() {
 
 
   const headerRef = useRef(null)
+
+  const header = useRef(null)
 
 
   useEffect(() => {
@@ -49,12 +47,12 @@ function LandingPage() {
 
     if (headerPressed) {
 
-      setPosition({
+        setPosition({
 
-        x: position.x + event.movementX,
-        y: position.y + event.movementY
+          x: position.x + event.movementX,
+          y: position.y + event.movementY
 
-      })
+        })
 
     }
 
@@ -63,16 +61,10 @@ function LandingPage() {
 
   return (
 
-    <main ref={headerRef} className='container-landing_page'>
-      <DiagonalResizeHitbox positionY="top" positionX="left" headerRef={headerRef} />
-      <HorizontalResizeHitbox positionX="left" headerRef={headerRef} />
-      <HorizontalResizeHitbox positionX="right" headerRef={headerRef} />
-      <VerticalResizeHitbox positionY="top" headerRef={headerRef} />
-      <VerticalResizeHitbox positionY="bottom" headerRef={headerRef} />
-      <DiagonalResizeHitbox positionY="top" positionX="right" headerRef={headerRef} />
-      <DiagonalResizeHitbox positionY="bottom" positionX="left" headerRef={headerRef} />
-      <DiagonalResizeHitbox positionY="bottom" positionX="right" headerRef={headerRef} />
+    <section ref={headerRef} className='container-landing_page'>
+      <Resize window={headerRef} />
       <header
+        ref={header}
         onMouseMove={onMouseMove}
         onMouseDown={() => setHeaderPressed(true)}
         onMouseUp={() => setHeaderPressed(false)}
@@ -95,7 +87,7 @@ function LandingPage() {
             rapidas e seguras no back-end</p>
         </article>
       </section>
-    </main>
+    </section>
 
   )
 
