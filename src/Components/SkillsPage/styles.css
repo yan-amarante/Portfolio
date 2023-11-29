@@ -1,3 +1,8 @@
+.window-header-skills {
+    background: #92A4D8 !important;
+    backdrop-filter: none !important;
+}
+
 .window-display-skills {
     display: flex;
     flex-direction: column;
@@ -13,45 +18,11 @@
     position: relative;
     z-index: -2;
 
-    .nav-skills-window {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        padding: 1rem;
-
-        .nav-list-skills-window {
-            list-style: none;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-
-            .nav-list-items {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: center;
-                gap: 0.1rem;
-                width: 15%;
-
-                .nav-list-icon {
-                    width: 20%;
-                    height: auto;
-                }
-
-                .nav-list-text {
-                    font-family: Questrial;
-                    color: #ffffff;
-                }
-            }
-        }
-    }
-
     .skills-list {
         list-style: none;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
 
 
         .skills-list-item {
@@ -78,7 +49,7 @@
             bottom: 0;
             border-radius: 5px;
             border: 1px solid transparent;
-            background: linear-gradient(to right, #889ACA,#ffffff , #889ACA) border-box;
+            background: linear-gradient(to right, #889ACA, #ffffff, #889ACA) border-box;
             -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
             mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: destination-out;
