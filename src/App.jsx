@@ -6,11 +6,11 @@ import { PageContext } from "./Context/pageContext.jsx"
 
 import Header from "./Components/Header/index.jsx"
 
-import LandingPage from "./Components/LandingPage/index.jsx"
+import Landing from "./Components/Window/Windows/Landing"
 
-import SkillsPage from "./Components/SkillsPage/index.jsx"
+import Skills from "./Components/Window/Windows/Skills"
 
-import ProjectsPage from "./Components/ProjectsPage/index.jsx"
+import Projects from "./Components/Window/Windows/Projects"
 
 
 
@@ -27,17 +27,17 @@ function App() {
 
     <main className='container'>
       {(page.landing.isActive ?
-        <LandingPage />
+        <Landing />
         :
         null
       )}
       {(page.skills.isActive ?
-        <SkillsPage />
+        <Skills />
         :
         null
       )}
       {(page.projects.isActive ?
-        <ProjectsPage />
+        <Projects />
         :
         null
       )}

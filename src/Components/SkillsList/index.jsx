@@ -20,11 +20,9 @@ function SkillsList({ data, currentStack }) {
 
     return (
 
-        <section>
-            <ul className="skills-list">
-                {createListItems()}
-            </ul>
-        </section>
+        <ul className="skills-list">
+            {createListItems()}
+        </ul>
 
     )
 

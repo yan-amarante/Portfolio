@@ -7,7 +7,7 @@ import FullscreenIcon from "../../FullscreenIcon/index"
 import CloseIcon from "../../CloseIcon/index"
 
 
-function WindowHeader({ icon, name,window, className }) {
+function WindowHeader({ icon, name, window, className, currentPage }) {
 
     const [headerPressed, setHeaderPressed] = useState(false)
 
@@ -58,9 +58,9 @@ function WindowHeader({ icon, name,window, className }) {
                 <h5 className='name-window'>{name}</h5>
             </section>
             <section className='window-controls'>
-                <MinimizeIcon currentPage="landing" />
-                <FullscreenIcon currentPage="landing" />
-                <CloseIcon currentPage="landing" />
+                <MinimizeIcon currentPage={currentPage} />
+                <FullscreenIcon currentPage={currentPage} />
+                <CloseIcon currentPage={currentPage} />
             </section>
         </header>
     )

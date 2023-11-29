@@ -9,48 +9,32 @@ import SkillsIcon from "../SkillsIcon/index"
 import ProjectsIcon from "../ProjectsIcon/index"
 
 
-
-
 function Header() {
-
 
     const { page, setPage } = useContext(PageContext)
 
 
-
-
     function changeWindow(currentPage, currentObject) {
-
 
         if (!currentObject.isActive) {
 
-
             setPage({ ...page, [currentPage]: { isActive: true, isFullscreen: currentObject.isFullscreen, isClosed: false } })
-
 
         } else if (currentObject.isActive) {
 
-
             setPage({ ...page, [currentPage]: { isActive: false, isFullscreen: currentObject.isFullscreen, isClosed: false } })
-
 
         }
 
-
     }
 
-
-
-
     function verifyOutlineState(currentPage) {
-
 
         if (currentPage.isActive) return "outline-active"
 
         else if (!currentPage.isClosed && !currentPage.isActive) return "outline-not_closed"
 
         else if (currentPage.isClosed) return "outline-closed"
-
 
     }
 
@@ -59,15 +43,11 @@ function Header() {
 
     function verifyIconState(currentPage) {
 
-
         if (currentPage.isActive) return "icon-header icon-header-active"
 
         else if (currentPage.isClosed || !currentPage.isActive) return "icon-header icon-header-not_active"
 
-
     }
-
-
 
 
     return (
@@ -91,7 +71,6 @@ function Header() {
         </header>
 
     )
-
 
 }
 
