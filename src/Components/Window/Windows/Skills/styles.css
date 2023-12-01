@@ -7,10 +7,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: url("../../assets/blur-circles/purple.png") repeat 200px 80%,
-        url("../../assets/blur-circles/blue.png") repeat -250px 20%,
-        url("../../assets/blur-circles/aqua.png") repeat 280px 30%,
-        url("../../assets/blur-circles/pink.png") repeat -250px 80%;
+    background: url("../../../../assets/blur-circles/purple.png") repeat 200px 80%,
+        url("../../../../assets/blur-circles/blue.png") repeat -250px 20%,
+        url("../../../../assets/blur-circles/aqua.png") repeat 280px 30%,
+        url("../../../../assets/blur-circles/pink.png") repeat -250px 80%;
     background-size: 100%, 100%, 100%, 100%;
     background-color: #889ACA;
     width: 100%;

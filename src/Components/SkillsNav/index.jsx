@@ -4,7 +4,7 @@ import FrontEndIcon from "../Icons/SkillsNavIcons/FrontEndIcon/index"
 
 import BackEndIcon from "../Icons/SkillsNavIcons/BackEndIcon/index"
 
-import TestICon from "../Icons/SkillsNavIcons/TestICon/index"
+import TestIcon from "../Icons/SkillsNavIcons/TestIcon/index"
 
 
 function SkillsNav({ currentStack, updateStack }) {
