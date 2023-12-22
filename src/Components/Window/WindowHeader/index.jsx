@@ -1,3 +1,5 @@
+import "./styles.css"
+
 import { useState, useEffect } from "react"
 
 import MinimizeIcon from "../../MinimizeIcon/index"

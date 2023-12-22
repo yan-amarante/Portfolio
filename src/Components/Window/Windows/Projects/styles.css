@@ -1,0 +1,164 @@
+.window-header-projects {
+    background: #292929 !important;
+    backdrop-filter: none !important;
+}
+
+.container-projects {
+    background: #232325;
+    width: 70%;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+
+    .window-display-projects {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .projects-filter {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #F0DFA4;
+        border-radius: 10px 0 0 10px;
+        background: url("../../../../assets/topographyPattern.png") no-repeat;
+        background-size: cover;
+        width: 20%;
+        height: 80%;
+        gap: 1rem;
+
+        .nav-buttons {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            width: 100%;
+            height: 20%;
+
+            .button-font {
+                font-family: Oswald;
+                font-size: 1.5rem;
+                width: 40%;
+                height: 35%;
+            }
+
+            .button-disabled {
+                border: none;
+                background: none;
+                color: white;
+            }
+
+            .button-active {
+                background-color: rgba(240, 223, 164, 0.05);
+                box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                position: relative;
+                border: none;
+                color: #F0DFA4;
+                border-radius: 1vw;
+            }
+
+            .button-active::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                border-radius: 1vw;
+                border: 1px solid transparent;
+                background: linear-gradient(to right, #F0DFA4, rgba(240, 223, 164, 0)) border-box;
+                -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+                mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+                -webkit-mask-composite: destination-out;
+                mask-composite: exclude;
+            }
+        }
+
+        .filter-list {
+            list-style: none;
+            width: 100%;
+            height: 20%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .filter-item {
+                font-family: Oswald;
+                font-size: 1rem;
+                background-color: rgba(240, 223, 164, 0.05);
+                box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                position: relative;
+                border: none;
+                color: #ffffff;
+                border-radius: 0px 1vw 1vw 0px;
+                width: 40%;
+                height: 30%;
+            }
+
+            .filter-item::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                border-radius: 0px 1vw 1vw 0px;
+                border: 1px solid transparent;
+                background: linear-gradient(to right, #F0DFA4, rgba(240, 223, 164, 0)) border-box;
+                -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+                mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+                -webkit-mask-composite: destination-out;
+                mask-composite: exclude;
+            }
+
+            .filter-check {
+                font-family: Oswald;
+                font-size: 1rem;
+                background-color: rgba(240, 223, 164, 0.05);
+                box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                position: absolute;
+                border: none;
+                color: #ffffff;
+                border-radius: 1vw 0 0 1vw;
+                width: 25%;
+                height: 100%;
+                left: -30%;
+                border: 1px solid #F0DFA4;
+            }
+        }
+    }
+
+    .projects-display {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid #F0DFA4;
+        background: url("../../../../assets/topographyPattern.png") no-repeat;
+        background-size: cover;
+        width: 60%;
+        height: 80%;
+        border-radius: 0 10px 10px 0;
+    }
+
+    .filter-list {
+        list-style: none;
+        width: 85%;
+    }
+    .project-screenshot{
+        width: 100%;
+        height: 20vh;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .project-info{
+        position: absolute;
+    }
+}

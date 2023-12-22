@@ -26,7 +26,7 @@
 
 
         .skills-list-item {
-            min-width: 90px;
+            max-width: 90px;
             min-height: 120px;
             border-radius: 5px;
             display: flex;
@@ -37,6 +37,10 @@
             .skills-list-text {
                 font-family: Questrial;
                 color: #ffffff;
+            }
+            .skills-list-image{
+                width: 70%;
+                height: auto;
             }
         }
 
