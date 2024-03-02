@@ -1,3 +1,93 @@
-.list{
-    list-style: none;
+.projects-container {
+    width: 100%;
+    height: 100%;
+    box-shadow: 2px 4px 8px 0px rgba(0, 0, 0, 0.25);
+}
+
+.project-screenshots {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+}
+
+.screenshot {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px
+}
+
+.project-infos {
+    position: absolute;
+    top: 0;
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 4px -1px 5px 0px rgba(240, 223, 164, 0.25);
+
+}
+
+.project-infos-background::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(240, 223, 164, 0.05);
+    backdrop-filter: blur(15px);
+    border-radius: 10px 0px 0px 10px;
+}
+
+.project-title {
+    border: 1px solid #F0DFA4;
+    border-radius: 10px 0px 0px 0px;
+    position: relative;
+    width: 100%;
+    height: 25%;
+    justify-content: center;
+    gap: 0.5rem;
+    overflow: hidden;
+}
+
+.project-description {
+    border: none;
+    position: relative;
+    width: 100%;
+    height: 73%;
+    border-radius: 5px ;
+}
+.project-description::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 0px 0px 0px 10px;
+    border: 1px solid transparent;
+    background: linear-gradient(to bottom, #F0DFA4 25%, rgba(240, 223, 164, 0) 75%) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+
+}
+
+.teste {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.text-medium-size {
+    font-size: 1rem;
+    color: #ffffff;
+    font-family: oswald;
+    font-weight: 300;
+    z-index: 1;
+    position: relative;
 }

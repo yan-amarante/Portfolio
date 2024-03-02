@@ -150,6 +150,7 @@
     .filter-list {
         list-style: none;
         width: 85%;
+        height: 30%;
     }
     .project-screenshot{
         width: 100%;

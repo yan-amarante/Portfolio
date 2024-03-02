@@ -29,10 +29,10 @@ function Skills() {
 
     listSkills()
 
-  },[])
+  }, [])
 
 
-  async function listSkills(){
+  async function listSkills() {
 
     const response = await fetch("https://api-pro-p8wr.onrender.com/skills/")
 
@@ -42,14 +42,14 @@ function Skills() {
 
   }
 
-  function updateSkillsList(data){
+  function updateSkillsList(data) {
 
     let skills = []
 
     Object.values(data).forEach((skill) => skills.push(skill))
 
     setSkillsList(skills)
-console.log(skillsList)
+    console.log(skillsList)
 
   }
 
@@ -59,7 +59,7 @@ console.log(skillsList)
 
   }
 
-  function renderListData(){
+  function renderListData() {
 
     if (skillsList !== null) return skillsList
 

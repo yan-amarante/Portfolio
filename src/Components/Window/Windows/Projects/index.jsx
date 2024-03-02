@@ -1,6 +1,6 @@
 import "./styles.css"
 
-import { useRef, useState } from "react"
+import { useRef, useState, useEffect } from "react"
 
 import Resize from "../../../Resize"
 
@@ -14,13 +14,46 @@ import skinWarriorsHome from "../../../../assets/ProjectsScreenshots/skinWarrior
 
 import List from "../../../List"
 
+
+const API_PROJECTS = "https://api-pro-p8wr.onrender.com/projects/"
+
+
 function Projects() {
 
   const [currentStack, setCurrentStack] = useState("frontEnd")
 
+  const [projects, setProjects] = useState(null)
+
 
   const headerRef = useRef(null)
 
+
+  useEffect(() => {
+
+    fetchProjects()
+
+  }, [])
+
+
+  async function fetchProjects() {
+
+    const response = await fetch(API_PROJECTS)
+
+    const data = await response.json()
+
+
+    const projectsArray = []
+
+    for (var key in data.projects) {
+
+      projectsArray.push(data.projects[key])
+
+    }
+
+
+    setProjects(projectsArray)
+
+  }
 
   function renderIcon() {
 
@@ -52,46 +85,48 @@ function Projects() {
     return [
 
       [
-  
+
         < div className="filter-check" ></div>,
-  
+
         <p>React</p>
-  
+
       ],
-  
+
       [
-  
+
         <div className="filter-check"></div>,
-  
+
         <p>JavaScript</p>
-  
+
       ],
       [
-  
+
         <div className="filter-check"></div>,
-  
+
         <p>TypeScript</p>
-  
+
       ]
-  
+
     ]
 
   }
 
-  function renderListContent() {
+  function renderListContent(type) {
 
-    const listItems = createListItems()
+    if (type === "filters") {
 
-    return listItems
+      const listItems = createListItems()
 
-  //   <ul className="filter-list">
-  //   <li className="filter-item">
-  //     <img className="project-screenshot" src={skinWarriorsHome} alt="" />
-  //     <section className="project-info">
-  //       <h3>Skin Warriors</h3>
-  //     </section>
-  //   </li>
-  // </ul>
+      return listItems
+
+    }
+
+    else if (type === "projects") {
+
+      if (projects !== null) return projects
+
+
+    }
 
   }
 
@@ -105,10 +140,12 @@ function Projects() {
             <button onClick={() => { changeStack("frontEnd") }} className={`button-font ${updateButtonStyle("frontEnd")}`}>Front-end</button>
             <button onClick={() => { changeStack("backEnd") }} className={`button-font ${updateButtonStyle("backEnd")}`}>back-end</button>
           </section>
-          <List content={renderListContent()} />
+          <List content={renderListContent("filters")} hasNestedArray={true} />
         </section>
         <section className="projects-display">
-          <List content={renderListContent()}/>
+          <ul className="filter-list">
+            <List content={renderListContent("projects")} hasNestedArray={false} />
+          </ul>
         </section>
       </>
     )
