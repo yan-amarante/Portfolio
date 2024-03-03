@@ -80,48 +80,9 @@ function Projects() {
 
   }
 
-  function createListItems() {
-
-    return [
-
-      [
-
-        < div className="filter-check" ></div>,
-
-        <p>React</p>
-
-      ],
-
-      [
-
-        <div className="filter-check"></div>,
-
-        <p>JavaScript</p>
-
-      ],
-      [
-
-        <div className="filter-check"></div>,
-
-        <p>TypeScript</p>
-
-      ]
-
-    ]
-
-  }
-
   function renderListContent(type) {
 
-    if (type === "filters") {
-
-      const listItems = createListItems()
-
-      return listItems
-
-    }
-
-    else if (type === "projects") {
+    if (type === "projects") {
 
       if (projects !== null) return projects
 
@@ -140,7 +101,6 @@ function Projects() {
             <button onClick={() => { changeStack("frontEnd") }} className={`button-font ${updateButtonStyle("frontEnd")}`}>Front-end</button>
             <button onClick={() => { changeStack("backEnd") }} className={`button-font ${updateButtonStyle("backEnd")}`}>back-end</button>
           </section>
-          <List content={renderListContent("filters")} hasNestedArray={true} />
         </section>
         <section className="projects-display">
           <ul className="filter-list">

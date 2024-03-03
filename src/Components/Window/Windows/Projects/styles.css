@@ -20,6 +20,7 @@
         align-items: center;
         justify-content: center;
         gap: 1rem;
+        
     }
 
     .projects-filter {
@@ -145,12 +146,15 @@
         width: 60%;
         height: 80%;
         border-radius: 0 10px 10px 0;
+        padding-top: 0.5rem;
+
     }
 
     .filter-list {
         list-style: none;
         width: 85%;
         height: 30%;
+        margin-top: 0.5rem;
     }
     .project-screenshot{
         width: 100%;

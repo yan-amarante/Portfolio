@@ -1,7 +1,11 @@
 import "./styles.css"
 
+import { useState } from "react"
 
 function List({ content, hasNestedArray }) {
+
+    const [currentScreenshot, setCurrentScreenshot] = useState(0)
+
 
     function renderItems(array) {
 
@@ -23,6 +27,31 @@ function List({ content, hasNestedArray }) {
 
     }
 
+    function changeScreenshot(index) {
+
+        if (currentScreenshot !== index) setCurrentScreenshot(index)
+
+    }
+    function returnClassName(index) {
+
+        if (currentScreenshot !== index) return "project-carousell-disabled"
+        else if (currentScreenshot === index) return "project-carousell-enabled"
+
+    }
+
+    function renderScreenshot() {
+
+        if (content !== undefined) {
+
+            return content.map((item) => {
+
+                return item.screenshots[currentScreenshot]
+
+            })
+
+        }
+    }
+
     function renderProjects() {
 
         if (content !== undefined) {
@@ -30,20 +59,24 @@ function List({ content, hasNestedArray }) {
             return content.map((item) => {
                 return <li className="projects-container">
                     <section className="project-screenshots">
-                        <img className="screenshot" src={item.screenshots[0]} alt="" />
+                        <img className="screenshot" src={renderScreenshot()} alt="" />
+                        <section className="container-row carousell-container">
+                            <div onClick={() => changeScreenshot(0)} className={returnClassName(0)}></div>
+                            <div onClick={() => changeScreenshot(1)} className={returnClassName(1)}></div>
+                        </section>
                         <section className="project-infos ">
                             <section className="project-infos-background container-row project-title">
                                 <img className="teste" src={item.logo} />
                                 <h2 className="text-medium-size">{item.titulo}</h2>
                             </section>
-                            <section className="project-infos-background project-description">
-                                <p className="text-medium-size">{item.descricao}</p>
-                                <section className="container-row">
-                                    <section className="container-row">
+                            <section className="container-column project-infos-background project-description">
+                                <p className="text-medium-size description">{item.descricao}</p>
+                                <section className="container-row projects-icons">
+                                    <section className="container-row icons-container">
                                         <GithubIcon />
                                         <ProjectLinkIcon projectLink={item.link} />
                                     </section>
-                                    <section className="container-row">
+                                    <section className="container-row icons-container">
                                         <img className="teste" src={item.tecnologias[0].image} />
                                         <img className="teste" src={item.tecnologias[1].image} />
                                     </section>
