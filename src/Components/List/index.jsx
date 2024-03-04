@@ -2,7 +2,7 @@ import "./styles.css"
 
 import { useState } from "react"
 
-function List({ content, hasNestedArray }) {
+function List({ content, hasNestedArray, currentStack }) {
 
     const [currentScreenshot, setCurrentScreenshot] = useState(0)
 
@@ -35,6 +35,7 @@ function List({ content, hasNestedArray }) {
     function returnClassName(index) {
 
         if (currentScreenshot !== index) return "project-carousell-disabled"
+
         else if (currentScreenshot === index) return "project-carousell-enabled"
 
     }
@@ -57,35 +58,45 @@ function List({ content, hasNestedArray }) {
         if (content !== undefined) {
 
             return content.map((item) => {
-                return <li className="projects-container">
-                    <section className="project-screenshots">
-                        <img className="screenshot" src={renderScreenshot()} alt="" />
-                        <section className="container-row carousell-container">
-                            <div onClick={() => changeScreenshot(0)} className={returnClassName(0)}></div>
-                            <div onClick={() => changeScreenshot(1)} className={returnClassName(1)}></div>
-                        </section>
-                        <section className="project-infos ">
-                            <section className="project-infos-background container-row project-title">
-                                <img className="teste" src={item.logo} />
-                                <h2 className="text-medium-size">{item.titulo}</h2>
+
+                if (item.label === currentStack) {
+
+                    return <li className="projects-container">
+                        <section className="project-screenshots">
+                            <img className="screenshot" src={renderScreenshot()} alt="" />
+                            <section className="container-row carousell-container">
+                                <div onClick={() => changeScreenshot(0)} className={returnClassName(0)}></div>
+                                <div onClick={() => changeScreenshot(1)} className={returnClassName(1)}></div>
                             </section>
-                            <section className="container-column project-infos-background project-description">
-                                <p className="text-medium-size description">{item.descricao}</p>
-                                <section className="container-row projects-icons">
-                                    <section className="container-row icons-container">
-                                        <GithubIcon />
-                                        <ProjectLinkIcon projectLink={item.link} />
-                                    </section>
-                                    <section className="container-row icons-container">
-                                        <img className="teste" src={item.tecnologias[0].image} />
-                                        <img className="teste" src={item.tecnologias[1].image} />
+                            <section className="project-infos ">
+                                <section className="project-infos-background container-row project-title">
+                                    <img className="teste" src={item.logo} />
+                                    <h2 className="text-medium-size">{item.titulo}</h2>
+                                </section>
+                                <section className="container-column project-infos-background project-description">
+                                    <p className="text-medium-size description">{item.descricao}</p>
+                                    <section className="container-row projects-icons">
+                                        <section className="container-row icons-container">
+                                            <GithubIcon githubLink={item.githubLink} />
+                                            <ProjectLinkIcon projectLink={item.projectLink} />
+                                        </section>
+                                        <section className="container-row icons-container">
+                                            {
+                                                item.tecnologias.map((tech) => {
+                                                    return <img className="teste" src={tech.image} />
+                                                })
+                                            }
+                                        </section>
                                     </section>
                                 </section>
                             </section>
                         </section>
-                    </section>
-                </li>
+                    </li>
+
+                }
+
             })
+
 
         }
 
@@ -100,19 +111,20 @@ function List({ content, hasNestedArray }) {
 
 }
 
-function GithubIcon() {
+function GithubIcon({ githubLink }) {
     return (
-        <svg className="teste" width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g clip-path="url(#clip0_182_645)">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.5 0C8.53765 0 11 2.52446 11 5.63911C11 8.13006 9.4259 10.2432 7.24185 10.9895C6.963 11.0451 6.864 10.869 6.864 10.7188C6.864 10.5329 6.8706 9.92574 6.8706 9.17114C6.8706 8.64534 6.6946 8.30217 6.49715 8.12727C7.722 7.98757 9.009 7.51067 9.009 5.34477C9.009 4.72878 8.7956 4.2261 8.4425 3.8312C8.4997 3.68875 8.68835 3.11517 8.3886 2.33857C8.3886 2.33857 7.9277 2.18747 6.87775 2.91677C6.4383 2.79192 5.9675 2.7291 5.5 2.7269C5.0325 2.7291 4.56225 2.79192 4.12335 2.91677C3.0723 2.18747 2.6103 2.33857 2.6103 2.33857C2.31165 3.11517 2.5003 3.68875 2.55695 3.8312C2.2055 4.2261 1.99045 4.72878 1.99045 5.34477C1.99045 7.50517 3.2747 7.98939 4.49625 8.13183C4.33895 8.27264 4.1965 8.52102 4.147 8.88567C3.8335 9.02977 3.0371 9.27916 2.5465 8.41731C2.5465 8.41731 2.25555 7.87549 1.70335 7.83589C1.70335 7.83589 1.1671 7.82876 1.66595 8.17856C1.66595 8.17856 2.0262 8.35181 2.27645 9.00356C2.27645 9.00356 2.5993 10.01 4.1294 9.66904C4.13215 10.1404 4.1371 10.5846 4.1371 10.7188C4.1371 10.8679 4.0359 11.0423 3.76145 10.9901C1.57575 10.2448 0 8.13061 0 5.63911C0 2.52446 2.4629 0 5.5 0Z" fill="white" />
-            </g>
-            <defs>
-                <clipPath id="clip0_182_645">
-                    <rect width="11" height="11" fill="white" />
-                </clipPath>
-            </defs>
-        </svg>
-
+        <a href={githubLink} target="_blank">
+            <svg className="teste" width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_182_645)">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M5.5 0C8.53765 0 11 2.52446 11 5.63911C11 8.13006 9.4259 10.2432 7.24185 10.9895C6.963 11.0451 6.864 10.869 6.864 10.7188C6.864 10.5329 6.8706 9.92574 6.8706 9.17114C6.8706 8.64534 6.6946 8.30217 6.49715 8.12727C7.722 7.98757 9.009 7.51067 9.009 5.34477C9.009 4.72878 8.7956 4.2261 8.4425 3.8312C8.4997 3.68875 8.68835 3.11517 8.3886 2.33857C8.3886 2.33857 7.9277 2.18747 6.87775 2.91677C6.4383 2.79192 5.9675 2.7291 5.5 2.7269C5.0325 2.7291 4.56225 2.79192 4.12335 2.91677C3.0723 2.18747 2.6103 2.33857 2.6103 2.33857C2.31165 3.11517 2.5003 3.68875 2.55695 3.8312C2.2055 4.2261 1.99045 4.72878 1.99045 5.34477C1.99045 7.50517 3.2747 7.98939 4.49625 8.13183C4.33895 8.27264 4.1965 8.52102 4.147 8.88567C3.8335 9.02977 3.0371 9.27916 2.5465 8.41731C2.5465 8.41731 2.25555 7.87549 1.70335 7.83589C1.70335 7.83589 1.1671 7.82876 1.66595 8.17856C1.66595 8.17856 2.0262 8.35181 2.27645 9.00356C2.27645 9.00356 2.5993 10.01 4.1294 9.66904C4.13215 10.1404 4.1371 10.5846 4.1371 10.7188C4.1371 10.8679 4.0359 11.0423 3.76145 10.9901C1.57575 10.2448 0 8.13061 0 5.63911C0 2.52446 2.4629 0 5.5 0Z" fill="white" />
+                </g>
+                <defs>
+                    <clipPath id="clip0_182_645">
+                        <rect width="11" height="11" fill="white" />
+                    </clipPath>
+                </defs>
+            </svg>
+        </a>
     )
 }
 

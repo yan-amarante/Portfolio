@@ -104,7 +104,7 @@ function Projects() {
         </section>
         <section className="projects-display">
           <ul className="filter-list">
-            <List content={renderListContent("projects")} hasNestedArray={false} />
+            {projects ? <List content={renderListContent("projects")} hasNestedArray={false} currentStack={currentStack} /> : <div className="spinner-load"></div>  }
           </ul>
         </section>
       </>
