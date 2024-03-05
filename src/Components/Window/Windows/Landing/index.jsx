@@ -18,7 +18,7 @@ function Landing() {
 
   function renderIcon() {
 
-    return <LandingPageIcon nameClass="icon-window_header" width="11%" height="auto" color="black" />
+    return <LandingPageIcon className="icon-window_header" color="white" />
 
   }
 
@@ -41,7 +41,7 @@ function Landing() {
   return (
 
     <section ref={headerRef} className='container-landing_page'>
-      <Resize window={headerRef} />
+      {/*<Resize window={headerRef} />*/}
       <WindowHeader className="window-header" icon={renderIcon()} name="Apresentação.exe" window={headerRef} currentPage="landing" />
       <WindowDisplay className="window-display-landing" content={renderContent()} />
     </section>

@@ -1,9 +1,9 @@
-function ProjectsIcon({ color, width, height }) {
+function ProjectsIcon({ color, className }) {
 
 
     return (
 
-        <svg width={width} height={height} viewBox="0 0 49 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg className={className}viewBox="0 0 49 40" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="40" height="40" rx="3" fill="#B3B3B3" />
             <rect x="4" width="40" height="40" rx="3" fill="#DBDBDB" />
             <rect x="9" width="40" height="40" rx="3" fill={color} />

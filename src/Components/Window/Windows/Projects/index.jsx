@@ -57,7 +57,7 @@ function Projects() {
 
   function renderIcon() {
 
-    return <ProjectsIcon nameClass="icon-window_header" width="11%" height="auto" color="white" />
+    return <ProjectsIcon className="icon-window_header" color="white" />
 
   }
 
@@ -116,7 +116,7 @@ function Projects() {
   return (
 
     <section ref={headerRef} className='container-projects'>
-      <Resize window={headerRef} />
+      {/*<Resize window={headerRef} />*/}
       <WindowHeader className="window-header-projects" icon={renderIcon()} name="Projetos.exe" window={headerRef} currentPage="projects" />
       <WindowDisplay className="window-display-projects" content={renderContent()} />
     </section>

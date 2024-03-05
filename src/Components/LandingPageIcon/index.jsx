@@ -1,9 +1,9 @@
-function LandingPageIcon({ color, width, height, nameClass }) {
+function LandingPageIcon({ color, className }) {
 
 
     return (
 
-        <svg className={nameClass} width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg className={className} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="1" y="1" width="38" height="38" rx="2" stroke={color} stroke-width="2" />
             <rect x="3.625" y="9.875" width="17.75" height="12.125" rx="2.5" stroke={color} />
             <rect x="26.25" y="11.875" width="10.625" height="1.25" rx="0.625" fill={color} />

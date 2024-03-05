@@ -16,7 +16,7 @@
     width: 100%;
     height: 100%;
     position: relative;
-    z-index: -2;
+
 
     .skills-list {
         list-style: none;
@@ -24,15 +24,34 @@
         grid-template-columns: repeat(3, 1fr);
         gap: 0.5rem;
 
+        @media (min-width: 768px) and (max-width: 1365px) {
+            gap: 3vw;
+            width: 55%;
+        }
+        @media (max-width: 767px) {
+            gap: 3vw;
+            width: 95%;
+        }
 
         .skills-list-item {
-            max-width: 90px;
-            min-height: 120px;
+            width: 130px;
+            height: 180px;
             border-radius: 5px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             position: relative;
+
+            @media (min-width: 768px) and (max-width: 1365px) {
+                width: 100%;
+                height: 250px;
+            }
+
+            @media (max-width: 767px) {
+                width: 100%;
+                height: 200px;
+            }
 
             .skills-list-text {
                 font-family: Questrial;

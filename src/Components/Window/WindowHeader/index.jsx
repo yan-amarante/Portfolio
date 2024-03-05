@@ -18,7 +18,7 @@ function WindowHeader({ icon, name, window, className, currentPage }) {
 
     useEffect(() => {
 
-        moveWindow()
+        //moveWindow()
 
     }, [position])
 

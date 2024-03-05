@@ -10,7 +10,6 @@
         list-style: none;
         display: flex;
         flex-direction: row;
-        align-items: center;
         justify-content: center;
         gap: 0.7rem;
         width: 100%;
@@ -24,6 +23,10 @@
             width: 15%;
             padding-bottom: 0.2rem;
             transition: border-bottom 0.3s ease-out;
+
+            @media (max-width: 1365px) {
+                width: 33%;
+            }
 
             .nav-list-icon {
                 width: 20%;

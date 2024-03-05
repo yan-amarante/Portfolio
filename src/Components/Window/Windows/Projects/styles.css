@@ -5,8 +5,8 @@
 
 .container-projects {
     background: #232325;
-    width: 70%;
-    height: 75%;
+    width: 100%;
+    height: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,6 +20,10 @@
         align-items: center;
         justify-content: center;
         gap: 1rem;
+
+        @media (max-width: 1365px) {
+            flex-direction: column;
+        }
 
     }
 
@@ -36,6 +40,13 @@
         height: 80%;
         gap: 1rem;
 
+        @media (max-width: 1365px) {
+            width: 80%;
+            height: 20%;
+            border-radius: 10px 10px 0 0;
+
+        }
+
         .nav-buttons {
             display: flex;
             flex-direction: row;
@@ -43,11 +54,26 @@
             width: 100%;
             height: 20%;
 
+            @media (min-width: 768px) and (max-width: 1365px) {
+                width: 50%;
+                height: 30%;
+            }
+
+            @media (max-width: 767px) {
+                width: 80%;
+                height: 40%;
+            }
+
             .button-font {
                 font-family: Oswald;
                 font-size: 1.5rem;
                 width: 40%;
                 height: 35%;
+
+                @media (max-width: 1365px) {
+                    width: 100%;
+                    height: 100%;
+                }
             }
 
             .button-disabled {
@@ -82,58 +108,7 @@
             }
         }
 
-        .filter-list {
-            list-style: none;
-            width: 100%;
-            height: 20%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
 
-            .filter-item {
-                font-family: Oswald;
-                font-size: 1rem;
-                background-color: rgba(240, 223, 164, 0.05);
-                box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-                position: relative;
-                border: none;
-                color: #ffffff;
-                border-radius: 0px 1vw 1vw 0px;
-                width: 40%;
-                height: 30%;
-            }
-
-            .filter-item::after {
-                content: "";
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                border-radius: 0px 1vw 1vw 0px;
-                border: 1px solid transparent;
-                background: linear-gradient(to right, #F0DFA4, rgba(240, 223, 164, 0)) border-box;
-                -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-                mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-                -webkit-mask-composite: destination-out;
-                mask-composite: exclude;
-            }
-
-            .filter-check {
-                font-family: Oswald;
-                font-size: 1rem;
-                background-color: rgba(240, 223, 164, 0.05);
-                box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-                position: absolute;
-                border: none;
-                color: #ffffff;
-                border-radius: 1vw 0 0 1vw;
-                width: 25%;
-                height: 100%;
-                left: -30%;
-                border: 1px solid #F0DFA4;
-            }
-        }
     }
 
     .projects-display {
@@ -148,6 +123,13 @@
         border-radius: 0 10px 10px 0;
         padding-top: 0.5rem;
         position: relative;
+
+        @media (max-width: 1365px) {
+            width: 80%;
+            height: 60%;
+            border-radius: 0 0 10px 10px;
+        }
+
     }
 
     .filter-list {
@@ -155,6 +137,17 @@
         width: 85%;
         height: 30%;
         margin-top: 0.5rem;
+
+        @media (min-width: 768px) and (max-width: 1365px) {
+            height: 50%;
+
+        }
+
+        @media (max-width: 767px) {
+            height: 70%;
+
+        }
+
     }
 
     .project-screenshot {
@@ -176,11 +169,11 @@
     border-color: white transparent transparent transparent;
     border-radius: 50%;
     animation: loadAnimation infinite linear 1s;
-    position:absolute;
-    left:0;
-    right:0;
-    top:0;
-    bottom:0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
     margin: auto auto;
 
 }

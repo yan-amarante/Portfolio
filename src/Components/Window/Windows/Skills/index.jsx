@@ -49,13 +49,12 @@ function Skills() {
     Object.values(data).forEach((skill) => skills.push(skill))
 
     setSkillsList(skills)
-    console.log(skillsList)
 
   }
 
   function renderIcon() {
 
-    return <SkillsIcon nameClass="icon-window_header" width="11%" height="auto" color="white" />
+    return <SkillsIcon className="icon-window_header" color="white" />
 
   }
 
@@ -84,7 +83,7 @@ function Skills() {
   return (
 
     <section ref={headerRef} className='container-landing_page'>
-      <Resize window={headerRef} />
+      {/*<Resize window={headerRef} />*/}
       <WindowHeader className="window-header-skills" icon={renderIcon()} name="Habilidades.exe" window={headerRef} currentPage="skills" />
       <WindowDisplay className="window-display-skills" content={renderContent()} />
     </section>
