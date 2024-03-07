@@ -10,8 +10,6 @@ import WindowDisplay from "../../WindowDisplay"
 
 import ProjectsIcon from "../../../ProjectsIcon"
 
-import skinWarriorsHome from "../../../../assets/ProjectsScreenshots/skinWarriorsHome.png"
-
 import List from "../../../List"
 
 

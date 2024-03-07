@@ -1,11 +1,32 @@
 import "./styles.css"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 function List({ content, hasNestedArray, currentStack }) {
 
-    const [currentScreenshot, setCurrentScreenshot] = useState(0)
+    const [currentScreenshot, setCurrentScreenshot] = useState({})
 
+
+    useEffect(() => {
+
+        returnScreenshotsIndex()
+
+    }, [])
+
+
+    function returnScreenshotsIndex() {
+
+        const projectsId = {}
+
+        content.forEach((item) => {
+
+            projectsId[item._id] = 0
+
+        })
+
+        setCurrentScreenshot(projectsId)
+
+    }
 
     function renderItems(array) {
 
@@ -27,30 +48,29 @@ function List({ content, hasNestedArray, currentStack }) {
 
     }
 
-    function changeScreenshot(index) {
+    function changeScreenshot(id, index) {
 
-        if (currentScreenshot !== index) setCurrentScreenshot(index)
-
-    }
-    function returnClassName(index) {
-
-        if (currentScreenshot !== index) return "project-carousell-disabled"
-
-        else if (currentScreenshot === index) return "project-carousell-enabled"
+        if (currentScreenshot[id] !== index) setCurrentScreenshot({ ...currentScreenshot, [id]: index })
 
     }
+    function returnClassName(id, index) {
 
-    function renderScreenshot() {
+        if (currentScreenshot[id] !== index) return "project-carousell-disabled"
+
+        else if (currentScreenshot[id] === index) return "project-carousell-enabled"
+
+    }
+
+    function renderScreenshot(id) {
 
         if (content !== undefined) {
 
-            return content.map((item) => {
+            const item = content.find((item) => item._id === id)
 
-                return item.screenshots[currentScreenshot]
-
-            })
+            if (item) return item.screenshots[currentScreenshot[id]]
 
         }
+
     }
 
     function renderProjects() {
@@ -61,12 +81,12 @@ function List({ content, hasNestedArray, currentStack }) {
 
                 if (item.label === currentStack) {
 
-                    return <li className="projects-container">
+                    return <li onClick={() => console.log(currentScreenshot)} key={item._id} className="projects-container">
                         <section className="project-screenshots">
-                            <img className="screenshot" src={renderScreenshot()} alt="" />
+                            <img className="screenshot" src={renderScreenshot(item._id)} alt="" />
                             <section className="container-row carousell-container">
-                                <div onClick={() => changeScreenshot(0)} className={returnClassName(0)}></div>
-                                <div onClick={() => changeScreenshot(1)} className={returnClassName(1)}></div>
+                                <div onClick={() => changeScreenshot(item._id, 0)} className={returnClassName(item._id, 0)}></div>
+                                <div onClick={() => changeScreenshot(item._id, 1)} className={returnClassName(item._id, 1)}></div>
                             </section>
                             <section className="project-infos ">
                                 <section className="project-infos-background container-row project-title">

@@ -14,6 +14,21 @@
     align-items: center;
   }
 
+  ::-webkit-scrollbar {
+    width: 7px;
+    height: 0;
+}
+
+::-webkit-scrollbar-track {
+    background: none;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #8a8a8a;
+    border-radius: 5px;
+}
+
   *,
   *::before,
   *::after {
