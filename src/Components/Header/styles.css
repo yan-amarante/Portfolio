@@ -9,6 +9,7 @@
   position: absolute;
   bottom: 0;
   justify-content: space-around;
+  z-index: 1;
 
   .title-header {
     color: #FFF;
