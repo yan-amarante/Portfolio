@@ -29,8 +29,7 @@ function Landing() {
       <article className='presentation-text'>
         <h3 className='h3-landing_page'>Olá, me chamo</h3>
         <h2 className='h2-landing_page'>Yan Amarante</h2>
-        <p className='paragraph-landing_page'>Sou capaz de desenvolver lindas interfaces no front-end e APIs
-          rapidas e seguras no back-end</p>
+        <p className='paragraph-landing_page'>Sou um desenvolvedor que está sempre em busca de melhorar e aprender novos conceitos e tecnologias </p>
       </article>
 
     )

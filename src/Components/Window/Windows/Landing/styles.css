@@ -18,6 +18,9 @@
 
         .presentation-text {
             width: 80%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
 
             .h3-landing_page {
                 font-family: Questrial;
@@ -38,6 +41,17 @@
                 font-size: 2rem;
                 color: #BBBBBB;
                 text-align: center;
+                width: 50%;
+
+                @media (min-width: 768px) and (max-width: 1365px) {
+                    width: 100%;
+                    font-size: 2rem;
+                }
+
+                @media (max-width: 767px) {
+                    width: 100%;
+                    font-size: 1.5rem;
+                }
             }
         }
     }
