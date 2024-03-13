@@ -10,28 +10,42 @@ import WindowHeader from "../../WindowHeader"
 
 import WindowDisplay from "../../WindowDisplay"
 
+import { PageContext } from "../../../../Context/pageContext"
+
+import { useContext } from 'react'
+
 
 function Landing() {
+
+  const { page, setPage } = useContext(PageContext)
 
   const headerRef = useRef(null)
 
 
   function renderIcon() {
 
-    return <LandingPageIcon className="icon-window_header" color="white" />
+    return <LandingPageIcon className="icon-window_header landing-page-header" />
+
+  }
+
+  function openWindow(pageToOpen) {
+
+    setPage({ ...page, [pageToOpen]: { isActive: true, isFullscreen: false, isClosed: false },  ["landing"]: { isActive: false, isFullscreen: false, isClosed: true }})
 
   }
 
   function renderContent() {
 
     return (
-
-      <article className='presentation-text'>
-        <h3 className='h3-landing_page'>Olá, me chamo</h3>
-        <h2 className='h2-landing_page'>Yan Amarante</h2>
-        <p className='paragraph-landing_page'>Sou um desenvolvedor que está sempre em busca de melhorar e aprender novos conceitos e tecnologias </p>
-      </article>
-
+      <>
+        <article className='presentation-text'>
+          <h3 className='h3-landing_page'>Olá, me chamo</h3>
+          <h2 className='h2-landing_page'>Yan Amarante</h2>
+          <p className='paragraph-landing_page'>Sou um desenvolvedor que está sempre em busca de melhorar e aprender novos conceitos e tecnologias </p>
+        </article>
+        <button onClick={() => openWindow("skills")} className="landing-page-button">Habilidades</button>
+        <button onClick={() =>openWindow("projects")} className="landing-page-button">Projetos</button>
+      </>
     )
 
   }

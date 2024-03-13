@@ -42,7 +42,7 @@ function Header() {
 
         } else if (currentObject.isActive) {
 
-            setPage({ ...page, [currentPage]: { isActive: false, isFullscreen: currentObject.isFullscreen, isClosed: false } })
+            setPage({ ...page, [currentPage]: { isActive: false, isFullscreen: currentObject.isFullscreen, isClosed: false }})
 
         }
 
@@ -76,7 +76,7 @@ function Header() {
             <nav className='navigation-container'>
                 <PortfolioLogo className="icon-svg-header icon-portfolio" />
                 <section onClick={() => changeWindow("landing", page.landing)} className={verifyIconState(page.landing)}>
-                    <LandingPageIcon className="icon-svg-header" color="white" />
+                    <LandingPageIcon className="icon-svg-header landing-page-header" />
                     <div className={verifyOutlineState(page.landing)}></div>
                 </section>
                 <section onClick={() => changeWindow("skills", page.skills)} className={verifyIconState(page.skills)}>

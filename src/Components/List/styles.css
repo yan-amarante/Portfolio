@@ -5,8 +5,8 @@
     max-width: 730px;
     max-height: 190px;
 
-    @media (max-width: 767px) {
-        min-height: 200px;
+    @media (max-width: 1365px) {
+        min-height: 250px;
     }
 
 }
@@ -53,7 +53,7 @@
     height: 100%;
     background-color: rgba(240, 223, 164, 0.05);
     backdrop-filter: blur(15px);
-    border-radius: 10px 0px 0px 10px;
+    border-radius: 10px 0px 0px 0px;
 }
 
 .project-title {
@@ -84,10 +84,52 @@
     }
 }
 
+.full-description-enabled {
+    display: block;
+    position: absolute;
+    z-index: 2;
+    background-color: #292929;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+    padding: 1rem;
+    opacity: 1;
+    transition: opacity ease-out 0.2s;
+}
+
+.full-description-disabled {
+    display: block;
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+.full-description {
+    font-size: 1rem;
+    color: #ffffff;
+    font-family: oswald;
+    font-weight: 300;
+}
+
 .description {
     width: 80%;
     text-align: center;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
 
+.show-more-button {
+    position: relative;
+    z-index: 1;
+    font-size: 1rem;
+    color: #F0DFA4;
+    font-family: questrial;
+    border: none;
+    background: none;
+    cursor: pointer;
 }
 
 .projects-icons {
@@ -101,13 +143,19 @@
 
 .carousell-container {
     position: absolute;
-    right: 30%;
-    top: 80%;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 5px;
     gap: 0.3rem;
 
     @media (max-width: 1365px) {
-        top: 5%;
-        right: 28%;
+        margin-bottom: initial;
+        bottom: initial;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 5px;
     }
 }
 
@@ -121,7 +169,7 @@
         width: 50px;
         height: 10px;
     }
-    
+
 }
 
 .project-carousell-disabled {
@@ -136,6 +184,7 @@
     }
 }
 
+
 .project-description::after {
     content: "";
     position: absolute;
@@ -145,8 +194,9 @@
     bottom: 0;
     border-radius: 0px 0px 0px 10px;
     border: 1px solid transparent;
+    background: -webkit-linear-gradient(to bottom, #F0DFA4 25%, rgba(240, 223, 164, 0) 75%) border-box;
     background: linear-gradient(to bottom, #F0DFA4 25%, rgba(240, 223, 164, 0) 75%) border-box;
-    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask: -webkit-linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0) padding-box;
     mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: destination-out;
     mask-composite: exclude;

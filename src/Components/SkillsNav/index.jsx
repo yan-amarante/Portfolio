@@ -6,6 +6,8 @@ import BackEndIcon from "../Icons/SkillsNavIcons/BackEndIcon/index"
 
 import TestIcon from "../Icons/SkillsNavIcons/TestsIcon/index"
 
+import LandingPageIcon from "../LandingPageIcon"
+
 
 function SkillsNav({ currentStack, updateStack }) {
 
@@ -36,6 +38,10 @@ function SkillsNav({ currentStack, updateStack }) {
 
         <nav className="nav-skills-window">
             <ul className="nav-list-skills-window">
+                <li onClick={() => changeStatck("gerais")} className={`nav-list-items ${updateBottomBorder("gerais")}`}>
+                    <LandingPageIcon className={`nav-list-icon ${updateIconColor("gerais")}`} />
+                    <h3 className="nav-list-text">Gerais</h3>
+                </li>
                 <li onClick={() => changeStatck("frontEnd")} className={`nav-list-items ${updateBottomBorder("frontEnd")}`}>
                     <FrontEndIcon className={`nav-list-icon ${updateIconColor("frontEnd")}`} />
                     <h3 className="nav-list-text">Front-end</h3>

@@ -15,6 +15,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        gap: 1rem;
 
         .presentation-text {
             width: 80%;
@@ -55,4 +56,14 @@
             }
         }
     }
+}
+
+.landing-page-button{
+    font-size: 1.5rem;
+    color: #3FBAFF;
+    font-family: questrial;
+    border: none;
+    text-decoration: underline;
+    background: none;
+    cursor: pointer;
 }

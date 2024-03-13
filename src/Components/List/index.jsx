@@ -1,17 +1,50 @@
 import "./styles.css"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 
 function List({ content, hasNestedArray, currentStack }) {
 
     const [currentScreenshot, setCurrentScreenshot] = useState({})
+
+    const [fullDescription, setFullDescription] = useState({})
+
+
+    const fullDescriptionRef = useRef(null)
 
 
     useEffect(() => {
 
         returnScreenshotsIndex()
 
+        updateStateWithProjectsIds()
+
     }, [])
+
+    useEffect(() => {
+
+        let handler = (e) => {
+
+            if (fullDescriptionRef.current !== null) {
+
+                if (!fullDescriptionRef.current.contains(e.target)) {
+
+                    setFullDescription(false)
+
+                }
+
+            }
+        }
+
+        document.addEventListener("mousedown", handler)
+
+        return () => {
+
+            document.removeEventListener("mousedown", handler)
+
+        }
+
+
+    })
 
 
     function returnScreenshotsIndex() {
@@ -25,6 +58,20 @@ function List({ content, hasNestedArray, currentStack }) {
         })
 
         setCurrentScreenshot(projectsId)
+
+    }
+
+    function updateStateWithProjectsIds() {
+
+        const projectsId = {}
+
+        content.forEach((item) => {
+
+            projectsId[item._id] = false
+
+        })
+
+        setFullDescription(projectsId)
 
     }
 
@@ -53,6 +100,7 @@ function List({ content, hasNestedArray, currentStack }) {
         if (currentScreenshot[id] !== index) setCurrentScreenshot({ ...currentScreenshot, [id]: index })
 
     }
+
     function returnClassName(id, index) {
 
         if (currentScreenshot[id] !== index) return "project-carousell-disabled"
@@ -73,6 +121,22 @@ function List({ content, hasNestedArray, currentStack }) {
 
     }
 
+    function openFullDescription(id) {
+
+        if (!fullDescription[id]) setFullDescription({ ...fullDescription, [id]: true })
+
+        else if (fullDescription[id]) setFullDescription({ ...fullDescription, [id]: false })
+
+    }
+
+    function enableFullDescription(id) {
+
+        if (fullDescription[id]) return "full-description-enabled"
+
+        else return "full-description-disabled"
+
+    }
+
     function renderProjects() {
 
         if (content !== undefined) {
@@ -89,12 +153,16 @@ function List({ content, hasNestedArray, currentStack }) {
                                 <div onClick={() => changeScreenshot(item._id, 1)} className={returnClassName(item._id, 1)}></div>
                             </section>
                             <section className="project-infos ">
+                                <div ref={fullDescriptionRef} className={enableFullDescription(item._id)}>
+                                    <p className="full-description">{item.descricao}</p>
+                                </div>
                                 <section className="project-infos-background container-row project-title">
                                     <img className="teste" src={item.logo} />
                                     <h2 className="text-medium-size">{item.titulo}</h2>
                                 </section>
                                 <section className="container-column project-infos-background project-description">
                                     <p className="text-medium-size description">{item.descricao}</p>
+                                    <button onClick={() => openFullDescription(item._id)} className="show-more-button">Mostrar mais</button>
                                     <section className="container-row projects-icons">
                                         <section className="container-row icons-container">
                                             <GithubIcon githubLink={item.githubLink} />
