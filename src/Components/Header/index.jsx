@@ -1,77 +1,40 @@
 import "./styles.css"
-
 import { PageContext } from "../../Context/pageContext"
-
 import { useContext } from 'react'
-
 import LandingPageIcon from "../LandingPageIcon/index"
-
 import SkillsIcon from "../SkillsIcon/index"
-
 import ProjectsIcon from "../ProjectsIcon/index"
 
-
 function Header() {
-
     const { page, setPage } = useContext(PageContext)
 
-
     function changeWindow(currentPage, currentObject) {
-
         if (!currentObject.isActive) {
-
             const object = {}
-
             Object.keys(page).forEach((key) => {
-
                 if (currentPage === key) {
-
                     object[key] = { isActive: true, isFullscreen: currentObject.isFullscreen, isClosed: false }
-
                 }
                 else if (currentPage !== key) {
-
                     object[key] = { isActive: false, isFullscreen: currentObject.isFullscreen, isClosed: true }
-
                 }
-
             })
-
-            
             setPage(object)
-
         } else if (currentObject.isActive) {
-
             setPage({ ...page, [currentPage]: { isActive: false, isFullscreen: currentObject.isFullscreen, isClosed: false }})
-
         }
-
     }
-
     function verifyOutlineState(currentPage) {
-
         if (currentPage.isActive) return "outline-active"
-
         else if (!currentPage.isClosed && !currentPage.isActive) return "outline-not_closed"
-
         else if (currentPage.isClosed) return "outline-closed"
-
     }
-
-
-
-
     function verifyIconState(currentPage) {
-
         if (currentPage.isActive) return "icon-header icon-header-active"
-
         else if (currentPage.isClosed || !currentPage.isActive) return "icon-header icon-header-not_active"
-
     }
-
 
     return (
-
         <header className='container-header'>
             <nav className='navigation-container'>
                 <PortfolioLogo className="icon-svg-header icon-portfolio" />
@@ -88,16 +51,11 @@ function Header() {
                     <div className={verifyOutlineState(page.projects)}></div>
                 </section>
             </nav>
-            <h2 className='title-header'>Yan Amarante</h2>
         </header>
-
     )
-
 }
 
-
 function PortfolioLogo({ className }) {
-
     return (
         <svg className={className} viewBox="0 0 28 45" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12.2734 24.6401L15.398 22.8361L26.6104 42.2565L23.4858 44.0605L12.2734 24.6401Z" fill="#9DA9C6" />
@@ -110,9 +68,7 @@ function PortfolioLogo({ className }) {
             <path d="M0.394971 1.48684L4.00297 1.48685L15.5483 23.8561L12.3895 25.2396L0.394971 1.48684Z" fill="#CED4E3" />
             <path d="M27.0938 1.48686L23.4858 1.48684L12.117 23.8561L15.2758 25.2396L27.0938 1.48686Z" fill="#CED4E3" />
         </svg>
-
     )
 }
-
 
 export default Header

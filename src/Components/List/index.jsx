@@ -154,7 +154,9 @@ function List({ content, hasNestedArray, currentStack }) {
                             </section>
                             <section className="project-infos ">
                                 <div ref={fullDescriptionRef} className={enableFullDescription(item._id)}>
-                                    <p className="full-description">{item.descricao}</p>
+                                    {item.descricao.split('\n').map((line, index) => (
+        <p className="full-description" key={index}>{line}</p>
+      ))}
                                 </div>
                                 <section className="project-infos-background container-row project-title">
                                     <img className="teste" src={item.logo} />
@@ -168,13 +170,13 @@ function List({ content, hasNestedArray, currentStack }) {
                                             <GithubIcon githubLink={item.githubLink} />
                                             <ProjectLinkIcon projectLink={item.projectLink} />
                                         </section>
-                                        <section className="container-row icons-container">
+                                        {/*<section className="container-row icons-container">
                                             {
                                                 item.tecnologias.map((tech) => {
                                                     return <img className="teste" src={tech.image} />
                                                 })
                                             }
-                                        </section>
+                                        </section>*/}
                                     </section>
                                 </section>
                             </section>
