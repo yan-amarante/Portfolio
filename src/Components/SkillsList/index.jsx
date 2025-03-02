@@ -10,7 +10,7 @@ function SkillsList({ data, currentStack }) {
 
         return data.map((skill) => {
 
-            if (skill.label === currentStack) {
+            //if (skill.label === currentStack) {
 
                 return (
 
@@ -21,7 +21,7 @@ function SkillsList({ data, currentStack }) {
 
                 )
 
-            }
+            //}
 
         })
 

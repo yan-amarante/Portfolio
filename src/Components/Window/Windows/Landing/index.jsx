@@ -41,7 +41,7 @@ function Landing() {
         <article className='presentation-text'>
           <h3 className='h3-landing_page'>Olá, me chamo</h3>
           <h2 className='h2-landing_page'>Yan Amarante</h2>
-          <p className='paragraph-landing_page'>Sou um desenvolvedor que está sempre em busca de melhorar e aprender novos conceitos e tecnologias </p>
+          <p className='paragraph-landing_page'>Sempre busco prover novas ideias e executa-las com a maior qualidade possível</p>
         </article>
         <button onClick={() => openWindow("skills")} className="landing-page-button">Habilidades</button>
         <button onClick={() =>openWindow("projects")} className="landing-page-button">Projetos</button>

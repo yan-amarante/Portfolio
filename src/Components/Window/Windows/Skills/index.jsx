@@ -71,7 +71,7 @@ function Skills() {
     return (
 
       <>
-        <SkillsNav currentStack={currentStack} updateStack={setCurrentStack} />
+        {/*<SkillsNav currentStack={currentStack} updateStack={setCurrentStack} />*/}
         {skillsList ? <SkillsList currentStack={currentStack} data={renderListData()} /> : <div className="spinner-load"></div>}
       </>
 

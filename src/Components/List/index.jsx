@@ -1,150 +1,84 @@
 import "./styles.css"
-
 import { useState, useEffect, useRef } from "react"
 
 function List({ content, hasNestedArray, currentStack }) {
-
     const [currentScreenshot, setCurrentScreenshot] = useState({})
-
     const [fullDescription, setFullDescription] = useState({})
-
 
     const fullDescriptionRef = useRef(null)
 
-
     useEffect(() => {
-
         returnScreenshotsIndex()
-
         updateStateWithProjectsIds()
-
     }, [])
-
     useEffect(() => {
-
         let handler = (e) => {
-
             if (fullDescriptionRef.current !== null) {
-
                 if (!fullDescriptionRef.current.contains(e.target)) {
-
                     setFullDescription(false)
-
                 }
-
             }
         }
 
         document.addEventListener("mousedown", handler)
-
         return () => {
-
             document.removeEventListener("mousedown", handler)
-
         }
-
-
     })
 
-
     function returnScreenshotsIndex() {
-
         const projectsId = {}
 
         content.forEach((item) => {
-
             projectsId[item._id] = 0
-
         })
 
         setCurrentScreenshot(projectsId)
-
     }
-
     function updateStateWithProjectsIds() {
-
         const projectsId = {}
 
         content.forEach((item) => {
-
             projectsId[item._id] = false
-
         })
 
         setFullDescription(projectsId)
-
     }
-
     function renderItems(array) {
-
         return array.map((item) => {
-
             return item
-
         })
-
     }
-
     function renderContent() {
-
         return content.map((nestedArray) => {
-
             return <li> {renderItems(nestedArray)} </li>
-
         })
-
     }
-
     function changeScreenshot(id, index) {
-
         if (currentScreenshot[id] !== index) setCurrentScreenshot({ ...currentScreenshot, [id]: index })
-
     }
-
     function returnClassName(id, index) {
-
         if (currentScreenshot[id] !== index) return "project-carousell-disabled"
-
         else if (currentScreenshot[id] === index) return "project-carousell-enabled"
-
     }
-
     function renderScreenshot(id) {
-
         if (content !== undefined) {
-
             const item = content.find((item) => item._id === id)
-
             if (item) return item.screenshots[currentScreenshot[id]]
-
         }
-
     }
-
     function openFullDescription(id) {
-
         if (!fullDescription[id]) setFullDescription({ ...fullDescription, [id]: true })
-
         else if (fullDescription[id]) setFullDescription({ ...fullDescription, [id]: false })
-
     }
-
     function enableFullDescription(id) {
-
         if (fullDescription[id]) return "full-description-enabled"
-
         else return "full-description-disabled"
-
     }
-
     function renderProjects() {
-
         if (content !== undefined) {
-
             return content.map((item) => {
-
                 if (item.label === currentStack) {
-
                     return <li onClick={() => console.log(currentScreenshot)} key={item._id} className="projects-container">
                         <section className="project-screenshots">
                             <img className="screenshot" src={renderScreenshot(item._id)} alt="" />
@@ -154,9 +88,7 @@ function List({ content, hasNestedArray, currentStack }) {
                             </section>
                             <section className="project-infos ">
                                 <div ref={fullDescriptionRef} className={enableFullDescription(item._id)}>
-                                    {item.descricao.split('\n').map((line, index) => (
-        <p className="full-description" key={index}>{line}</p>
-      ))}
+                                     <p className="full-description" >{item.descricao}</p>
                                 </div>
                                 <section className="project-infos-background container-row project-title">
                                     <img className="teste" src={item.logo} />
@@ -170,35 +102,32 @@ function List({ content, hasNestedArray, currentStack }) {
                                             <GithubIcon githubLink={item.githubLink} />
                                             <ProjectLinkIcon projectLink={item.projectLink} />
                                         </section>
-                                        {/*<section className="container-row icons-container">
+                                        <section className="container-row icons-container">
                                             {
                                                 item.tecnologias.map((tech) => {
-                                                    return <img className="teste" src={tech.image} />
+                                                    return (
+                                                        <>
+                                                    <img className="teste" src={tech.image} />
+                                                    <p>{tech.name}</p>
+                                                    </>
+                                                    )
                                                 })
                                             }
-                                        </section>*/}
+                                        </section>
                                     </section>
                                 </section>
                             </section>
                         </section>
                     </li>
-
                 }
-
             })
-
-
         }
-
     }
-
-
     return (
         <>
             {hasNestedArray ? renderContent() : renderProjects()}
         </>
     )
-
 }
 
 function GithubIcon({ githubLink }) {
