@@ -12,7 +12,7 @@ import WindowDisplay from "../../WindowDisplay"
 
 import { PageContext } from "../../../../Context/pageContext"
 
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 
 
 function Landing() {
@@ -20,6 +20,10 @@ function Landing() {
   const { page, setPage } = useContext(PageContext)
 
   const headerRef = useRef(null)
+
+  useEffect(()=>{
+    fetch("https://api-pro-p8wr.onrender.com/projects")
+  },[])
 
 
   function renderIcon() {

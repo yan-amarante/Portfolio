@@ -102,7 +102,7 @@ function List({ content, hasNestedArray, currentStack }) {
                                             <GithubIcon githubLink={item.githubLink} />
                                             <ProjectLinkIcon projectLink={item.projectLink} />
                                         </section>
-                                        <section className="container-row icons-container">
+                                        {/*<section className="container-row icons-container">
                                             {
                                                 item.tecnologias.map((tech) => {
                                                     return (
@@ -113,7 +113,7 @@ function List({ content, hasNestedArray, currentStack }) {
                                                     )
                                                 })
                                             }
-                                        </section>
+                                        </section>*/}
                                     </section>
                                 </section>
                             </section>
