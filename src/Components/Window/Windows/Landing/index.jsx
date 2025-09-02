@@ -49,6 +49,7 @@ function Landing() {
         </article>
         <button onClick={() => openWindow("skills")} className="landing-page-button">Habilidades</button>
         <button onClick={() =>openWindow("projects")} className="landing-page-button">Projetos</button>
+        <a href="Curriculo.pdf" className="landing-page-button" download="Curriculo_Yan.pdf">Curriculo</a>
       </>
     )
 
